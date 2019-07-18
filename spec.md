@@ -6,6 +6,7 @@ or maintain spending for optimum fulfillment
 energy spent?
 - Is this expenditure of life energy in alignment with my values and life purpose
 - How might this expenditure change if I didn’t have to work for money?  
+- What would the world look like if everyone spent this much on this category
 
 ## User Stories
 
@@ -30,3 +31,42 @@ see how well I’m sticking with the YMOYL program.
 - As a user, I would like to import/input the categories each month without the 
 dollar amounts, since I consider that information private.
 
+## Tables
+
+### `users`
+`id`
+
+### `questions`
+`id`
+`text`: `string`
+
+### `reflections`
+`id`
+`timescale`: `ENUM` --> `"MONTH"` or `"YEAR"` (will start with "MONTH")
+`reflected_on`: `Date`
+`begin_date`: `Date` the first day of which the timescale applies to. 
+
+### `categories`
+`id`
+`ynab_id`
+`user_id`
+`name`
+`parent_category`: can be null if it's the root
+
+### `reflections_categories`
+`reflection_id`
+`category_id`
+consider placing amount in here
+
+### `amounts` 
+`id`
+`category_id`
+`reflection_id`
+`amount`
+
+### `answers`
+`id`
+`amount_id`
+`questions_id`
+`answer`: ENUM --> `"INCREASE"`, `"DECREASE"`, or `"STAY_THE_SAME"`
+`note`: string
